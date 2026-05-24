@@ -1,23 +1,23 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { createOrderApi, updateOrderApi, deleteOrderApi, fetchOrdersApi } from '../../services/api'
 
-export const fetchOrders = createAsyncThunk('orders/fetchOrders', async () => {
-  const orders = await fetchOrdersApi()
+export const fetchOrders = createAsyncThunk('orders/fetchOrders', async (userEmail) => {
+  const orders = await fetchOrdersApi(userEmail)
   return orders
 })
 
-export const createOrder = createAsyncThunk('orders/createOrder', async (order) => {
-  const created = await createOrderApi(order)
+export const createOrder = createAsyncThunk('orders/createOrder', async ({ order, userEmail }) => {
+  const created = await createOrderApi(order, userEmail)
   return created
 })
 
-export const updateOrder = createAsyncThunk('orders/updateOrder', async ({ id, order }) => {
-  const updated = await updateOrderApi({ id, order })
+export const updateOrder = createAsyncThunk('orders/updateOrder', async ({ id, order, userEmail }) => {
+  const updated = await updateOrderApi({ id, order }, userEmail)
   return updated
 })
 
-export const deleteOrder = createAsyncThunk('orders/deleteOrder', async (id) => {
-  await deleteOrderApi(id)
+export const deleteOrder = createAsyncThunk('orders/deleteOrder', async ({ id, userEmail }) => {
+  await deleteOrderApi(id, userEmail)
   return id
 })
 
@@ -37,7 +37,7 @@ const ordersSlice = createSlice({
       })
       .addCase(fetchOrders.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        state.list = action.payload.filter((order) => order.userId === 1)
+        state.list = action.payload
       })
       .addCase(fetchOrders.rejected, (state, action) => {
         state.status = 'failed'

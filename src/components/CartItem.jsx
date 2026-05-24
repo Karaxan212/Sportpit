@@ -7,7 +7,12 @@ export default function CartItem({ item }) {
   return (
     <div className="flex flex-col gap-4 rounded-3xl border border-white/10 bg-slate-950/80 p-5 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-center gap-4">
-        <img src={item.image} alt={item.title} className="h-24 w-24 rounded-3xl object-cover" />
+        <img
+          src={item.image}
+          alt={item.title}
+          onError={(event) => { event.currentTarget.src = '/images/protein-1.svg' }}
+          className="h-24 w-24 rounded-3xl object-cover"
+        />
         <div>
           <h3 className="text-lg font-semibold text-white">{item.title}</h3>
           <p className="text-sm text-slate-400">{item.category}</p>

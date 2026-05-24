@@ -49,9 +49,14 @@ export default function Header() {
               Выйти
             </button>
           ) : (
-            <Link to="/login" className="rounded-xl bg-white/5 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:bg-white/10">
-              Войти
-            </Link>
+            <div className="flex items-center gap-2">
+              <Link to="/login" className="rounded-xl bg-white/5 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:bg-white/10">
+                Войти
+              </Link>
+              <Link to="/register" className="rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-black transition hover:bg-brand-400">
+                Регистрация
+              </Link>
+            </div>
           )}
         </div>
       </div>

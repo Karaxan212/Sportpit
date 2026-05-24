@@ -6,7 +6,7 @@ import { addItem } from '../redux/slices/cartSlice'
 import { showToast } from '../redux/slices/uiSlice'
 import LoadingSkeleton from '../components/LoadingSkeleton'
 
-const fallbackImage = 'https://via.placeholder.com/500x350?text=No+Image'
+const fallbackImage = '/images/protein-1.svg'
 
 export default function ProductDetail() {
   const { id } = useParams()

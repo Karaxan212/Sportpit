@@ -5,15 +5,18 @@ import { showToast } from '../redux/slices/uiSlice'
 
 export default function Orders() {
   const dispatch = useDispatch()
+  const user = useSelector((state) => state.auth.user)
   const { list, status, error } = useSelector((state) => state.orders)
 
   useEffect(() => {
-    if (status === 'idle') dispatch(fetchOrders())
-  }, [status, dispatch])
+    if (status === 'idle' && user) {
+      dispatch(fetchOrders(user.email))
+    }
+  }, [status, dispatch, user])
 
   const handleCancel = async (id) => {
     try {
-      await dispatch(deleteOrder(id)).unwrap()
+      await dispatch(deleteOrder({ id, userEmail: user.email })).unwrap()
       dispatch(showToast('Заказ отменён', 'Готово'))
     } catch {
       dispatch(showToast('Не удалось отменить заказ', 'Ошибка'))
@@ -23,7 +26,7 @@ export default function Orders() {
   const handleMarkComplete = async (order) => {
     try {
       const updatedOrder = { ...order, status: 'completed' }
-      await dispatch(updateOrder({ id: order.id, order: updatedOrder })).unwrap()
+      await dispatch(updateOrder({ id: order.id, order: updatedOrder, userEmail: user.email })).unwrap()
       dispatch(showToast('Статус заказа обновлён', 'Готово'))
     } catch {
       dispatch(showToast('Не удалось обновить заказ', 'Ошибка'))

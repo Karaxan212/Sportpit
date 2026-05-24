@@ -8,6 +8,7 @@ import ProductDetail from '../pages/ProductDetail'
 import Cart from '../pages/Cart'
 import Orders from '../pages/Orders'
 import Login from '../pages/Login'
+import Register from '../pages/Register'
 import Profile from '../pages/Profile'
 
 function RequireAuth({ children }) {
@@ -28,6 +29,7 @@ export default function AppRouter() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
+            <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

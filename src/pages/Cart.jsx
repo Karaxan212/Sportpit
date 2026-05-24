@@ -8,6 +8,7 @@ import CartItem from '../components/CartItem'
 export default function Cart() {
   const dispatch = useDispatch()
   const { items } = useSelector((state) => state.cart)
+  const user = useSelector((state) => state.auth.user)
   const cartTotal = useMemo(
     () => items.reduce((sum, item) => sum + item.price * item.quantity, 0),
     [items],
@@ -15,15 +16,19 @@ export default function Cart() {
 
   const handleCheckout = async () => {
     if (items.length === 0) return
+    if (!user) {
+      dispatch(showToast('Пожалуйста, войдите в аккаунт перед оформлением заказа', 'Предупреждение'))
+      return
+    }
 
     const orderPayload = {
-      userId: 1,
+      userEmail: user.email,
       date: new Date().toISOString(),
       products: items.map((item) => ({ productId: item.id, quantity: item.quantity })),
     }
 
     try {
-      await dispatch(createOrder(orderPayload)).unwrap()
+      await dispatch(createOrder({ order: orderPayload, userEmail: user.email })).unwrap()
       dispatch(clearCart())
       dispatch(showToast('Заказ успешно создан!', 'Успех'))
     } catch (err) {

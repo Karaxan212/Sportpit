@@ -1,7 +1,0 @@
-<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-  <rect width="600" height="600" rx="80" fill="#111827" />
-  <path d="M180 220h240v200H180z" fill="#1e293b" rx="40" />
-  <circle cx="300" cy="280" r="50" fill="#a78bfa" />
-  <rect x="240" y="360" width="120" height="40" rx="20" fill="#c4b5fd" />
-  <text x="300" y="520" text-anchor="middle" font-family="Inter, sans-serif" font-size="56" fill="#e2e8f0">Gainer</text>
-</svg>

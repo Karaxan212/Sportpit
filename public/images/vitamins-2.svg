@@ -1,8 +1,0 @@
-<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-  <rect width="600" height="600" rx="80" fill="#111827" />
-  <path d="M170 180h260v260H170z" fill="#1e293b" rx="40" />
-  <circle cx="300" cy="260" r="60" fill="#f59e0b" />
-  <circle cx="220" cy="350" r="36" fill="#fde68a" />
-  <circle cx="380" cy="350" r="36" fill="#fde68a" />
-  <text x="300" y="520" text-anchor="middle" font-family="Inter, sans-serif" font-size="56" fill="#e2e8f0">Health</text>
-</svg>

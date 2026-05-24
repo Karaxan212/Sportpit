@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const fallbackImage = 'https://via.placeholder.com/500x350?text=No+Image'
+const fallbackImage = '/images/protein-1.svg'
 
 export default function ProductCard({ product }) {
   const images = product.images?.length ? product.images : [product.image]
