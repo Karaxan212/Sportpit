@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import AppRouter from './routes/AppRouter'
 import Toast from './components/Toast'
+import MusicPlayer from './components/MusicPlayer'
 import { loadCart, loadUserCart } from './redux/slices/cartSlice'
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
     <>
       <AppRouter />
       <Toast message={toast?.message} type={toast?.type} />
+      <MusicPlayer />
     </>
   )
 }
