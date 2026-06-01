@@ -1,8 +1,12 @@
+import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../redux/slices/authSlice'
 
+const LOGO_SRC = '/favicon.svg'
+
 export default function Header() {
+  const [logoError, setLogoError] = useState(false)
   const dispatch = useDispatch()
   const { items } = useSelector((state) => state.cart)
   const user = useSelector((state) => state.auth.user)
@@ -20,8 +24,17 @@ export default function Header() {
     <header className="border-b border-white/10 bg-black/80 backdrop-blur sticky top-0 z-40">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6">
         <Link to="/" className="flex items-center gap-3 text-lg font-semibold uppercase tracking-[0.3em] text-brand-400">
-          <span className="inline-block h-10 w-10 rounded-full bg-brand-400/20 border border-brand-400 shadow-glow"></span>
-          FitFuel
+          {!logoError ? (
+            <img
+              src={LOGO_SRC}
+              alt="FitFuel"
+              onError={() => setLogoError(true)}
+              className="h-10 w-10 rounded-full object-cover"
+            />
+          ) : (
+            <span className="inline-block h-10 w-10 rounded-full bg-brand-400/20 border border-brand-400 shadow-glow"></span>
+          )}
+          <span className="hidden sm:inline">FitFuel</span>
         </Link>
         <nav className="hidden md:flex items-center gap-4 text-sm text-slate-300">
           {navLinks.map((link) => (
